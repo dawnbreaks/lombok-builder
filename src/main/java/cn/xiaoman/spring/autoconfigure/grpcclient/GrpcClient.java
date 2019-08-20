@@ -18,7 +18,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @ToString(exclude = {"stub"})
 public class GrpcClient<B extends AbstractStub<B>> {
-    public static final int DEFAULT_DNS_MIN_TTL_SECONDS = 5;
+
 
     @Getter(lazy = true)
     private final B stub = createStub();
