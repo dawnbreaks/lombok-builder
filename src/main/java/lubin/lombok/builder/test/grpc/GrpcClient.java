@@ -53,7 +53,6 @@ public class GrpcClient<B extends AbstractStub<B>> {
         return createByHost0();
     }
 
-
     private B createByHost0() {
         try {
             String groupId = host + "_" + port;
@@ -70,5 +69,13 @@ public class GrpcClient<B extends AbstractStub<B>> {
     private B createClient(String serviceURI, Class<B> stubClass) {
         ClientBuilder builder = new ClientBuilder(serviceURI).responseTimeoutMillis(responseTimeOutMillis);
         return builder.build(stubClass);
+    }
+
+    public static <B extends AbstractStub<B>> GrpcClient<B> createByClientConfig(Class<B> stubClass) {
+        GrpcClientBuilder<B> builder = GrpcClient.<B>builder()
+          .host("localhost")
+          .dnsDiscoveryFlag(false)
+          .stubClass(stubClass);
+        return builder.build();
     }
 }
