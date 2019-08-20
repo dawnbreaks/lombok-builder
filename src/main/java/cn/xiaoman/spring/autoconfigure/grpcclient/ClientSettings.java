@@ -4,7 +4,6 @@ import brave.Tracing;
 import com.google.common.collect.Lists;
 import io.grpc.stub.AbstractStub;
 import lombok.Data;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.validation.annotation.Validated;
 
 import javax.annotation.PostConstruct;
@@ -20,7 +19,7 @@ import static cn.xiaoman.spring.autoconfigure.grpcclient.GrpcClient.*;
  *Date:    2019/4/22
  */
 
-@ConfigurationProperties(prefix = "xiaoman.spring.client-settings")
+//@ConfigurationProperties(prefix = "xiaoman.spring.client-settings")
 @Validated
 @Data
 public class ClientSettings {
