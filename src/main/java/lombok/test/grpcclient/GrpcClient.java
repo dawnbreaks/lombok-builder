@@ -1,11 +1,10 @@
 package lombok.test.grpcclient;
 
-import lombok.test.grpcclient.ClientSettings.ClientConfig;
 import io.grpc.stub.AbstractStub;
 import lombok.Builder;
-import lombok.ToString;
 import lombok.experimental.Accessors;
 import lombok.extern.slf4j.Slf4j;
+import lombok.test.grpcclient.ClientSettings.ClientConfig;
 
 /*
  *author: lubin
