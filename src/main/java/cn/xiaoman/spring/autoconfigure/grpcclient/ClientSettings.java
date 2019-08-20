@@ -1,10 +1,11 @@
-package lubin.lombok.builder.test.grpcclient;
+package cn.xiaoman.spring.autoconfigure.grpcclient;
 
 import brave.Tracing;
 import com.google.common.collect.Lists;
 import io.grpc.stub.AbstractStub;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.validation.annotation.Validated;
 
 import javax.annotation.PostConstruct;
 import javax.validation.constraints.NotEmpty;
@@ -12,16 +13,16 @@ import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.Optional;
 
-import static lubin.lombok.builder.test.grpcclient.GrpcClient.*;
-
+import static cn.xiaoman.spring.autoconfigure.grpcclient.GrpcClient.*;
 
 /*
  *author: lubin
  *Date:    2019/4/22
  */
 
-@Data
 @ConfigurationProperties(prefix = "xiaoman.spring.client-settings")
+@Validated
+@Data
 public class ClientSettings {
     private final Optional<Tracing> tracing;
     private Integer dnsMinTtlSeconds = DEFAULT_DNS_MIN_TTL_SECONDS;

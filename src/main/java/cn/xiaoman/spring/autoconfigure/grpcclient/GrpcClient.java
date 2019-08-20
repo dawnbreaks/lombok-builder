@@ -1,6 +1,7 @@
-package lubin.lombok.builder.test.grpcclient;
+package cn.xiaoman.spring.autoconfigure.grpcclient;
 
 import brave.Tracing;
+import cn.xiaoman.spring.autoconfigure.grpcclient.ClientSettings.ClientConfig;
 import com.linecorp.armeria.client.ClientBuilder;
 import com.linecorp.armeria.client.Endpoint;
 import com.linecorp.armeria.client.brave.BraveClient;
@@ -19,7 +20,6 @@ import lombok.Getter;
 import lombok.ToString;
 import lombok.experimental.Accessors;
 import lombok.extern.slf4j.Slf4j;
-import lubin.lombok.builder.test.grpcclient.ClientSettings.ClientConfig;
 
 /*
  *author: lubin
@@ -56,7 +56,7 @@ public class GrpcClient<B extends AbstractStub<B>> {
     @Getter(value = AccessLevel.PRIVATE, lazy = true)
     private static final KubernetesClient kubernetesClient = new DefaultKubernetesClient();
 
-    public B createStub() {
+    private B createStub() {
         log.info("createStub|clientConfig={}", this);
         if (dnsDiscoveryFlag) {
             return createByK8sDns();
