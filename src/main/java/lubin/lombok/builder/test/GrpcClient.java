@@ -4,6 +4,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
 import lombok.experimental.Accessors;
+import lombok.extern.slf4j.Slf4j;
 
 /*
  *author: lubin
@@ -12,6 +13,7 @@ import lombok.experimental.Accessors;
 @Builder
 @Accessors(fluent = true)
 @ToString(exclude = {"stub"})
+@Slf4j
 public class GrpcClient<T extends AbstractStub<T>>  {
     public static final int DEFAULT_SERVER_PORT = 8080;
 
