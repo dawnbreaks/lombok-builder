@@ -67,6 +67,6 @@ public class ClientSettings {
 
     public <STUB extends AbstractStub<STUB>> GrpcClient<STUB> createClientByName(String name, Class<STUB> stubClass) {
         ClientConfig clientConfig = getClientConfigByName(name);
-        return GrpcClient.createByClientConfig(clientConfig, tracing.isPresent() ? tracing.get() : null, stubClass);
+        return GrpcClient.createByClientConfig(clientConfig, stubClass);
     }
 }
