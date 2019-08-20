@@ -1,11 +1,10 @@
 package lombok.test.grpcclient;
 
-import lombok.test.grpcclient.ClientSettings.ClientConfig;
 import io.grpc.stub.AbstractStub;
 import lombok.Builder;
 import lombok.ToString;
 import lombok.experimental.Accessors;
-import lombok.extern.slf4j.Slf4j;
+import lombok.test.grpcclient.ClientSettings.ClientConfig;
 
 /*
  *author: lubin
@@ -14,7 +13,6 @@ import lombok.extern.slf4j.Slf4j;
 
 @Builder
 @Accessors(fluent = true)
-@Slf4j
 @ToString(exclude = {"stub"})
 public class GrpcClient<B extends AbstractStub<B>> {
     public static final int DEFAULT_DNS_MIN_TTL_SECONDS = 5;
