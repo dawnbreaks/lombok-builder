@@ -22,7 +22,6 @@ public class ClientSettings {
     private Long responseTimeOutMillis = DEFAULT_RESPONSE_TIMEOUT_MILLISECONDS;
     private List<ClientConfig> clients = Lists.newArrayList();
 
-
     @Data
     public static class ClientConfig {
         private String name;

@@ -8,7 +8,7 @@
 plugins {
     id 'java'
     id 'idea'
-    id "org.springframework.boot" version "2.1.7.RELEASE" apply false
+//    id "org.springframework.boot" version "2.1.7.RELEASE" apply false
 }
 
 wrapper {
