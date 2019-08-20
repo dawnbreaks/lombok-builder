@@ -2,15 +2,6 @@ package cn.xiaoman.spring.autoconfigure.grpcclient;
 
 import brave.Tracing;
 import cn.xiaoman.spring.autoconfigure.grpcclient.ClientSettings.ClientConfig;
-import com.linecorp.armeria.client.ClientBuilder;
-import com.linecorp.armeria.client.Endpoint;
-import com.linecorp.armeria.client.brave.BraveClient;
-import com.linecorp.armeria.client.endpoint.EndpointGroup;
-import com.linecorp.armeria.client.endpoint.EndpointGroupRegistry;
-import com.linecorp.armeria.client.endpoint.EndpointSelectionStrategy;
-import com.linecorp.armeria.client.endpoint.StaticEndpointGroup;
-import com.linecorp.armeria.client.endpoint.dns.DnsAddressEndpointGroup;
-import com.linecorp.armeria.client.endpoint.dns.DnsAddressEndpointGroupBuilder;
 import io.grpc.stub.AbstractStub;
 import lombok.Builder;
 import lombok.Getter;
@@ -52,13 +43,7 @@ public class GrpcClient<B extends AbstractStub<B>> {
     private Tracing tracing;
 
     private B createStub() {
-        log.info("createStub|clientConfig={}", this);
-        if (dnsDiscoveryFlag) {
-            return createByK8sDns();
-//            return createByK8sEndpoints();
-        } else {
-            return createByHost0();
-        }
+        return null;
     }
 
     public static <B extends AbstractStub<B>> GrpcClient<B> createByClientConfig(ClientConfig clientConfig, Tracing tracing, Class<B> stubClass) {
@@ -83,40 +68,4 @@ public class GrpcClient<B extends AbstractStub<B>> {
         return builder.build();
     }
 
-    private B createByK8sDns() {
-        try {
-            String groupId = host + "_" + port;
-            DnsAddressEndpointGroup group = new DnsAddressEndpointGroupBuilder(host).port(port)
-              .ttl(dnsMinTtlSeconds, dnsMaxTtlSeconds)
-              .build();
-            group.awaitInitialEndpoints();
-            EndpointGroupRegistry.register(groupId, group, EndpointSelectionStrategy.ROUND_ROBIN);
-
-            String serviceURI = String.format(SERVICE_ENDPOINT_GROUP_URI, groupId);
-            return createClient(serviceURI, stubClass);
-        } catch (Exception e) {
-            throw new RuntimeException("GrpcClient.createByK8sDns", e);
-        }
-    }
-
-    private B createByHost0() {
-        try {
-            String groupId = host + "_" + port;
-            EndpointGroup group = new StaticEndpointGroup(Endpoint.of(host, port));
-            EndpointGroupRegistry.register(groupId, group, EndpointSelectionStrategy.ROUND_ROBIN);
-
-            String serviceURI = String.format(SERVICE_ENDPOINT_GROUP_URI, groupId);
-            return createClient(serviceURI, stubClass);
-        } catch (Exception e) {
-            throw new RuntimeException("GrpcClient.createByHost", e);
-        }
-    }
-
-    private B createClient(String serviceURI, Class<B> stubClass) {
-        ClientBuilder builder = new ClientBuilder(serviceURI).responseTimeoutMillis(responseTimeOutMillis);
-        if (tracing != null) {
-            builder.decorator(BraveClient.newDecorator(tracing, host));
-        }
-        return builder.build(stubClass);
-    }
 }
