@@ -28,16 +28,8 @@ public class GrpcClient<B extends AbstractStub<B>> {
 
     @Getter(lazy = true)
     private final B stub = createStub();
-    @Builder.Default
-    private Integer dnsMinTtlSeconds = DEFAULT_DNS_MIN_TTL_SECONDS;
-    @Builder.Default
-    private Integer dnsMaxTtlSeconds = DEFAULT_DNS_MAX_TTL_SECONDS;
-    @Builder.Default
-    private Long responseTimeOutMillis = DEFAULT_RESPONSE_TIMEOUT_MILLISECONDS;
     private Class<B> stubClass;
     private String host;
-    @Builder.Default
-    private Integer port = DEFAULT_SERVER_PORT;
     private Boolean dnsDiscoveryFlag;
 
     private B createStub() {
