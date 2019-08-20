@@ -29,4 +29,6 @@ dependencies {
     compile 'org.slf4j:slf4j-api:1.7.26'
     compile 'org.slf4j:slf4j-simple:1.7.26'
     compile 'com.linecorp.armeria:armeria-grpc:0.90.2'
+    compile 'com.linecorp.armeria:armeria-brave:0.90.2'
+    compile 'io.fabric8:kubernetes-client:4.2.2'
 }
