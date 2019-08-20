@@ -1,6 +1,5 @@
 package cn.xiaoman.spring.autoconfigure.grpcclient;
 
-import brave.Tracing;
 import cn.xiaoman.spring.autoconfigure.grpcclient.ClientSettings.ClientConfig;
 import io.grpc.stub.AbstractStub;
 import lombok.Builder;
@@ -40,31 +39,16 @@ public class GrpcClient<B extends AbstractStub<B>> {
     @Builder.Default
     private Integer port = DEFAULT_SERVER_PORT;
     private Boolean dnsDiscoveryFlag;
-    private Tracing tracing;
 
     private B createStub() {
         return null;
     }
 
-    public static <B extends AbstractStub<B>> GrpcClient<B> createByClientConfig(ClientConfig clientConfig, Tracing tracing, Class<B> stubClass) {
+    public static <B extends AbstractStub<B>> GrpcClient<B> createByClientConfig(ClientConfig clientConfig, Class<B> stubClass) {
         GrpcClientBuilder<B> builder = GrpcClient.<B>builder()
           .host(clientConfig.getHost())
-          .tracing(tracing)
           .dnsDiscoveryFlag(clientConfig.getDnsDiscoveryFlag())
           .stubClass(stubClass);
-
-        if (clientConfig.getResponseTimeOutMillis() != null) {
-            builder.responseTimeOutMillis(clientConfig.getResponseTimeOutMillis());
-        }
-        if (clientConfig.getDnsMinTtlSeconds() != null) {
-            builder.dnsMinTtlSeconds(clientConfig.getDnsMinTtlSeconds());
-        }
-        if (clientConfig.getDnsMaxTtlSeconds() != null) {
-            builder.dnsMaxTtlSeconds(clientConfig.getDnsMaxTtlSeconds());
-        }
-        if (clientConfig.getPort() != null) {
-            builder.port(clientConfig.getPort());
-        }
         return builder.build();
     }
 
