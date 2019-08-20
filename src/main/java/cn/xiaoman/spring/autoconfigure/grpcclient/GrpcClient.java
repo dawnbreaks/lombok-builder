@@ -1,6 +1,5 @@
 package cn.xiaoman.spring.autoconfigure.grpcclient;
 
-import cn.xiaoman.spring.autoconfigure.grpcclient.ClientSettings.ClientConfig;
 import io.grpc.stub.AbstractStub;
 import lombok.Builder;
 import lombok.Getter;
@@ -36,10 +35,10 @@ public class GrpcClient<B extends AbstractStub<B>> {
         return null;
     }
 
-    public static <B extends AbstractStub<B>> GrpcClient<B> createByClientConfig(ClientConfig clientConfig, Class<B> stubClass) {
+    public static <B extends AbstractStub<B>> GrpcClient<B> createByClientConfig(Class<B> stubClass) {
         GrpcClientBuilder<B> builder = GrpcClient.<B>builder()
-          .host(clientConfig.getHost())
-          .dnsDiscoveryFlag(clientConfig.getDnsDiscoveryFlag())
+          .host("localhost")
+          .dnsDiscoveryFlag(true)
           .stubClass(stubClass);
         return builder.build();
     }
