@@ -1,7 +1,12 @@
 package cn.xiaoman.spring.autoconfigure.grpcclient;
 
+import com.google.common.collect.Lists;
 import io.grpc.stub.AbstractStub;
 import lombok.Data;
+
+import java.util.List;
+
+import static cn.xiaoman.spring.autoconfigure.grpcclient.GrpcClient.*;
 
 /*
  *author: lubin
@@ -11,6 +16,11 @@ import lombok.Data;
 //@Validated
 @Data
 public class ClientSettings {
+    private Integer dnsMinTtlSeconds = DEFAULT_DNS_MIN_TTL_SECONDS;
+    private Integer dnsMaxTtlSeconds = DEFAULT_DNS_MAX_TTL_SECONDS;
+    private Long responseTimeOutMillis = DEFAULT_RESPONSE_TIMEOUT_MILLISECONDS;
+    private List<ClientConfig> clients = Lists.newArrayList();
+
     @Data
     public static class ClientConfig {
         private String name;
@@ -23,8 +33,12 @@ public class ClientSettings {
         private Long responseTimeOutMillis;
     }
 
+    private ClientConfig getClientConfigByName(String name) {
+        return clients.stream().filter(config -> config.getName().equals(name)).findFirst().get();
+    }
+
     public <STUB extends AbstractStub<STUB>> GrpcClient<STUB> createClientByName(String name, Class<STUB> stubClass) {
-        ClientConfig clientConfig = new ClientConfig();
+        ClientConfig clientConfig = getClientConfigByName(name);
         return GrpcClient.createByClientConfig(clientConfig, stubClass);
     }
 }
