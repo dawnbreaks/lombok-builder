@@ -1,6 +1,7 @@
 package lubin.lombok.builder.test;
 
 import lombok.Builder;
+import lombok.Getter;
 import lombok.ToString;
 import lombok.experimental.Accessors;
 
@@ -10,7 +11,7 @@ import lombok.experimental.Accessors;
  */
 @Builder
 @Accessors(fluent = true)
-@ToString(exclude = {"stubClass"})
+@ToString(exclude = {"stub"})
 public class GrpcClient<T extends AbstractStub<T>>  {
     public static final int DEFAULT_SERVER_PORT = 8080;
 
@@ -29,6 +30,16 @@ public class GrpcClient<T extends AbstractStub<T>>  {
     @Builder.Default
     private Integer port = DEFAULT_SERVER_PORT;
     private Boolean dnsDiscoveryFlag;
+    @Getter(lazy = true)
+    private final T stub = createStub();
+
+    private T createStub() {
+        try {
+            return stubClass.newInstance();
+        } catch (InstantiationException|IllegalAccessException e) {
+            throw new RuntimeException(e.getMessage(), e);
+        }
+    }
 
     public static GrpcClient<Stub> create() {
         return GrpcClient.<Stub>builder().dnsDiscoveryFlag(true)
