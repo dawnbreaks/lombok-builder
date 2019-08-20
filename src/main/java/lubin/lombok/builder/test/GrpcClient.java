@@ -7,7 +7,7 @@ import lombok.Builder;
  *Date:    2019-08-20
  */
 @Builder
-public class GrpcClient<B>  {
+public class GrpcClient<T extends AbstractStub<T>>  {
     public static final int DEFAULT_SERVER_PORT = 8080;
 
     public static final int DEFAULT_DNS_MIN_TTL_SECONDS = 5;
@@ -20,17 +20,17 @@ public class GrpcClient<B>  {
     private Integer dnsMaxTtlSeconds = DEFAULT_DNS_MAX_TTL_SECONDS;
     @Builder.Default
     private Long responseTimeOutMillis = DEFAULT_RESPONSE_TIMEOUT_MILLISECONDS;
-    private Class<B> stubClass;
+    private Class<T> stubClass;
     private String host;
     @Builder.Default
     private Integer port = DEFAULT_SERVER_PORT;
     private Boolean dnsDiscoveryFlag;
 
-    public static GrpcClient<String> create() {
-        return GrpcClient.<String>builder().dnsDiscoveryFlag(true)
+    public static GrpcClient<Stub> create() {
+        return GrpcClient.<Stub>builder().dnsDiscoveryFlag(true)
           .dnsMaxTtlSeconds(20)
           .dnsMinTtlSeconds(10)
-          .stubClass(String.class)
+          .stubClass(Stub.class)
           .build();
     }
 }
