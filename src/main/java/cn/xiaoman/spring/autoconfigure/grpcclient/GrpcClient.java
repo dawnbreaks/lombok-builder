@@ -104,20 +104,6 @@ public class GrpcClient<B extends AbstractStub<B>> {
         }
     }
 
-    private B createByK8sEndpoints() {
-        try {
-            String groupId = host + "_" + port;
-            K8sEndpointGroup group = new K8sEndpointGroup(kubernetesClient(), K8S_NAMESPACE, host, port);
-            group.awaitInitialEndpoints();
-            EndpointGroupRegistry.register(groupId, group, EndpointSelectionStrategy.ROUND_ROBIN);
-
-            String serviceURI = String.format(SERVICE_ENDPOINT_GROUP_URI, groupId);
-            return createClient(serviceURI, stubClass);
-        } catch (Exception e) {
-            throw new RuntimeException("GrpcClient.createByK8sEndpoints", e);
-        }
-    }
-
     private B createByHost0() {
         try {
             String groupId = host + "_" + port;
