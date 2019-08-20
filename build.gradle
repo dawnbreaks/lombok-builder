@@ -8,7 +8,6 @@
 plugins {
     id 'java'
     id 'idea'
-//    id "org.springframework.boot" version "2.1.7.RELEASE" apply false
 }
 
 wrapper {
@@ -23,13 +22,6 @@ repositories {
     jcenter()
 }
 
-//apply plugin:  "io.spring.dependency-management"
-
-//dependencyManagement {
-//    imports {
-//        mavenBom org.springframework.boot.gradle.plugin.SpringBootPlugin.BOM_COORDINATES
-//    }
-//}
 
 dependencies {
     compileOnly "org.projectlombok:lombok:1.18.8"
@@ -37,8 +29,4 @@ dependencies {
     compile 'org.slf4j:slf4j-api:1.7.26'
     compile 'org.slf4j:slf4j-simple:1.7.26'
     compile 'com.linecorp.armeria:armeria-grpc:0.90.2'
-//    compile 'com.linecorp.armeria:armeria-brave:0.90.2'
-//    compile 'io.fabric8:kubernetes-client:4.2.2'
-
-//    compile 'org.springframework.boot:spring-boot-starter'
 }

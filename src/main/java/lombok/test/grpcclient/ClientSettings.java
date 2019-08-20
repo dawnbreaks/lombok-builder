@@ -1,9 +1,9 @@
-package cn.xiaoman.spring.autoconfigure.grpcclient;
+package lombok.test.grpcclient;
 
 import io.grpc.stub.AbstractStub;
 import lombok.Data;
 
-import static cn.xiaoman.spring.autoconfigure.grpcclient.GrpcClient.*;
+import static lombok.test.grpcclient.GrpcClient.*;
 
 /*
  *author: lubin
