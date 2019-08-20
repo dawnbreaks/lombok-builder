@@ -1,4 +1,4 @@
-package lubin.lombok.builder.test.grpc;
+package lubin.lombok.builder.test.grpcclient;
 
 import brave.Tracing;
 import com.linecorp.armeria.client.ClientBuilder;
@@ -19,7 +19,7 @@ import lombok.Getter;
 import lombok.ToString;
 import lombok.experimental.Accessors;
 import lombok.extern.slf4j.Slf4j;
-import lubin.lombok.builder.test.grpc.ClientSettings.ClientConfig;
+import lubin.lombok.builder.test.grpcclient.ClientSettings.ClientConfig;
 
 /*
  *author: lubin

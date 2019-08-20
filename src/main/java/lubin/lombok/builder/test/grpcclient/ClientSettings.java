@@ -1,4 +1,4 @@
-package lubin.lombok.builder.test.grpc;
+package lubin.lombok.builder.test.grpcclient;
 
 import brave.Tracing;
 import com.google.common.collect.Lists;
@@ -11,7 +11,7 @@ import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.Optional;
 
-import static lubin.lombok.builder.test.grpc.GrpcClient.*;
+import static lubin.lombok.builder.test.grpcclient.GrpcClient.*;
 
 
 /*

@@ -1,4 +1,4 @@
-package lubin.lombok.builder.test.grpc;
+package lubin.lombok.builder.test.grpcclient;
 
 import com.google.common.collect.Lists;
 import com.linecorp.armeria.client.Endpoint;
