@@ -39,5 +39,6 @@ dependencies {
     compile 'com.linecorp.armeria:armeria-grpc:0.90.2'
     compile 'com.linecorp.armeria:armeria-brave:0.90.2'
     compile 'io.fabric8:kubernetes-client:4.2.2'
-    compile 'org.springframework.boot:spring-boot-starter'
+
+//    compile 'org.springframework.boot:spring-boot-starter'
 }
