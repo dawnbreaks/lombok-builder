@@ -11,10 +11,7 @@ import com.linecorp.armeria.client.endpoint.EndpointSelectionStrategy;
 import com.linecorp.armeria.client.endpoint.StaticEndpointGroup;
 import com.linecorp.armeria.client.endpoint.dns.DnsAddressEndpointGroup;
 import com.linecorp.armeria.client.endpoint.dns.DnsAddressEndpointGroupBuilder;
-import io.fabric8.kubernetes.client.DefaultKubernetesClient;
-import io.fabric8.kubernetes.client.KubernetesClient;
 import io.grpc.stub.AbstractStub;
-import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
@@ -53,8 +50,6 @@ public class GrpcClient<B extends AbstractStub<B>> {
     private Integer port = DEFAULT_SERVER_PORT;
     private Boolean dnsDiscoveryFlag;
     private Tracing tracing;
-    @Getter(value = AccessLevel.PRIVATE, lazy = true)
-    private static final KubernetesClient kubernetesClient = new DefaultKubernetesClient();
 
     private B createStub() {
         log.info("createStub|clientConfig={}", this);
