@@ -1,5 +1,6 @@
 package lubin.lombok.builder.test;
 
+import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
@@ -28,7 +29,8 @@ public class GrpcClient<T extends AbstractStub<T>>  {
     @Builder.Default
     private Long responseTimeOutMillis = DEFAULT_RESPONSE_TIMEOUT_MILLISECONDS;
     private Class<T> stubClass;
-    private String host;
+    @Getter(value = AccessLevel.PRIVATE, lazy = true)
+    private final String host = "";
     @Builder.Default
     private Integer port = DEFAULT_SERVER_PORT;
     private Boolean dnsDiscoveryFlag;
