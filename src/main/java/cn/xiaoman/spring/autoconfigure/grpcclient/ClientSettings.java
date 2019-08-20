@@ -3,8 +3,6 @@ package cn.xiaoman.spring.autoconfigure.grpcclient;
 import io.grpc.stub.AbstractStub;
 import lombok.Data;
 
-import static cn.xiaoman.spring.autoconfigure.grpcclient.GrpcClient.*;
-
 /*
  *author: lubin
  *Date:    2019/4/22
@@ -13,16 +11,16 @@ import static cn.xiaoman.spring.autoconfigure.grpcclient.GrpcClient.*;
 //@Validated
 @Data
 public class ClientSettings {
-    private Integer dnsMinTtlSeconds = DEFAULT_DNS_MIN_TTL_SECONDS;
-    private Integer dnsMaxTtlSeconds = DEFAULT_DNS_MAX_TTL_SECONDS;
-    private Long responseTimeOutMillis = DEFAULT_RESPONSE_TIMEOUT_MILLISECONDS;
+    private Integer dnsMinTtlSeconds;
+    private Integer dnsMaxTtlSeconds;
+    private Long responseTimeOutMillis;
     @Data
     public static class ClientConfig {
         private String name;
         private String host;
         private Boolean dnsDiscoveryFlag;
 
-        private Integer port = GrpcClient.DEFAULT_SERVER_PORT;
+        private Integer port;
         private Integer dnsMinTtlSeconds;
         private Integer dnsMaxTtlSeconds;
         private Long responseTimeOutMillis;
