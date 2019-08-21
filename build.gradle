@@ -12,12 +12,11 @@ plugins {
 
 wrapper {
     gradleVersion = '5.5.1'
-    distributionType = Wrapper.DistributionType.ALL
+    distributionType = Wrapper.DistributionType.BIN
 }
 
 repositories {
     mavenLocal()
-    maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
     mavenCentral()
     jcenter()
 }
@@ -28,5 +27,4 @@ dependencies {
     annotationProcessor "org.projectlombok:lombok:1.18.8"
     compile 'org.slf4j:slf4j-api:1.7.26'
     compile 'org.slf4j:slf4j-simple:1.7.26'
-    compile 'com.linecorp.armeria:armeria-grpc:0.90.2'
 }
