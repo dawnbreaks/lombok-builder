@@ -7,10 +7,8 @@ import static lombok.test.grpcclient.GrpcClient.*;
 
 /*
  *author: lubin
- *Date:    2019/4/22
+ *Date:    2019/8/20
  */
-
-//@Validated
 @Data
 public class ClientSettings {
     private Integer dnsMinTtlSeconds = DEFAULT_DNS_MIN_TTL_SECONDS;
