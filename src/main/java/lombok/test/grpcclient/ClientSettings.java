@@ -1,8 +1,9 @@
 package lombok.test.grpcclient;
 
+import io.grpc.stub.AbstractStub;
 import lombok.Data;
 
-import static lombok.test.grpcclient.GrpcClient.DEFAULT_DNS_MIN_TTL_SECONDS;
+import static lombok.test.grpcclient.GrpcClient.*;
 
 /*
  *author: lubin
